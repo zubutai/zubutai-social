@@ -1,0 +1,48 @@
+{
+  "name": "SubutaiAnsible",
+  "description": "Environment configuration test blueprint",
+  "nodes": [
+    {
+      "name": "backup-server1",
+      "template": "ubuntu16",
+      "peer_group": "HTTP-GROUP",
+      "size": "TINY"
+    }
+  ],
+  "peerGroups": [
+    {
+      "name": "HTTP-GROUP",
+      "pricingPref": {
+        "maxPrice": "500"
+      }
+    }
+  ],
+  "sshKey": "root",
+  "configuration": {
+    "arguments": [
+      {
+        "name" : "path",
+        "value" : "/root"
+      },
+      {
+        "name" : "path1",
+        "value" : "/root"
+      }  
+      ,
+      {
+        "name" : "msg",
+        "value" : "My message"
+      }  
+    ],
+    "playbook": "https://github.com/platium/app1/archive/master.zip",
+    "script": "main.yml",
+    "groups": [
+      {
+        "name": "meme",
+        "nodes_name": [
+          "backup-server1"
+        ]
+      }
+    ]
+  }
+}
